@@ -1,13 +1,13 @@
 image: node:14-alpine
 
 stages:
+  - yarn
   - lint
 
-eslint:
-  stage: lint
+yarn:
+  stage: yarn
   script:
     - yarn install
-    - yarn lint:ci
   cache:
     paths:
       - node_modules/
@@ -18,3 +18,7 @@ eslint:
     paths:
       - node_modules/
 
+eslint:
+  stage: lint
+  script:
+    - yarn lint:ci
