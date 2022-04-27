@@ -8,7 +8,6 @@ import { User } from '../enitities';
 import { UniqEmailGuard, UniqPhoneGuard } from '../guards';
 import { UserIdGuard } from '../guards/user-id.guard';
 import { CreateUserInput, UpdateUserInput, UserSignInInput } from '../inputs';
-import { UserModel } from '../models';
 import { UserService } from '../services';
 import { UserRole } from '../types/enums';
 import { AuthUserDto } from '../types/types';
@@ -44,11 +43,8 @@ import { AuthUserDto } from '../types/types';
       decorators: [UseGuards(UniqEmailGuard, UniqPhoneGuard)],
     },
   },
-  serialize: {
-    create: UserModel,
-    update: UserModel,
-    get: UserModel,
-    getMany: UserModel,
+  query: {
+    exclude: ['password'],
   },
   params: {
     id: {
