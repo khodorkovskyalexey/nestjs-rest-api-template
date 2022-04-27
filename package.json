@@ -42,6 +42,8 @@
     "migration:revert": "yarn typeorm migration:revert",
     "typeorm-seeding": "ts-node -r tsconfig-paths/register ./node_modules/typeorm-seeding/dist/cli.js",
     "seeds": "yarn typeorm-seeding seed --configName ormconfig.json",
+    "schema:sync": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js schema:sync",
+    "schema:drop": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js schema:drop",
     "prepare": "husky install",
     "commit": "cz"
   },
