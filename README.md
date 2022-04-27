@@ -1,9 +1,9 @@
-# NestJS REST API sample
+# NestJS REST API template
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
 
 ## Description
 
-NestJS REST API sample for typical project
+NestJS REST API template for typical project
 
 ## Table of Contents
 
@@ -27,7 +27,7 @@ NestJS REST API sample for typical project
 ## Quick run
 
 ```bash
-git clone --depth 1 https://github.com/khodorkovskyalexey/nestjs-rest-api-sample.git my-app
+git clone --depth 1 https://github.com/khodorkovskyalexey/nestjs-rest-api-template.git my-app
 cd my-app/
 cp env-example .env
 ```
@@ -47,7 +47,7 @@ docker-compose logs
 ## Comfortable development
 
 ```bash
-git clone --depth 1 https://github.com/khodorkovskyalexey/nestjs-rest-api-sample.git my-app
+git clone --depth 1 https://github.com/khodorkovskyalexey/nestjs-rest-api-template.git my-app
 cd my-app/
 cp env-example .env
 ```
