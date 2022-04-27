@@ -1,5 +1,5 @@
 {
-  "name": "nestjs-rest-api-template",
+  "name": "nestjs-rest-api-sample",
   "version": "0.0.1",
   "description": "",
   "engines": {
@@ -7,7 +7,7 @@
   },
   "repository": {
     "type": "GitHub",
-    "url": "https://github.com/khodorkovskyalexey/nestjs-rest-api-template"
+    "url": "https://github.com/khodorkovskyalexey/nestjs-rest-api-sample"
   },
   "author": {
     "name": "khodorkovskyalexey",
@@ -24,6 +24,7 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test,seeds,factories}/**/*.ts\"",
+    "lint:ci": "eslint \"{src,apps,libs,test}/**/*.ts\" -c .eslintrc.ci.js",
     "lint:fix": "eslint \"{src,apps,libs,test,seeds,factories}/**/*.ts\" --fix",
     "prettier:write": "prettier --write \"src/**/*.ts\"",
     "cp-env": "cp .env dist",
@@ -41,7 +42,6 @@
     "migration:revert": "yarn typeorm migration:revert",
     "typeorm-seeding": "ts-node -r tsconfig-paths/register ./node_modules/typeorm-seeding/dist/cli.js",
     "seeds": "yarn typeorm-seeding seed --configName ormconfig.json",
-
     "prepare": "husky install",
     "commit": "cz"
   },

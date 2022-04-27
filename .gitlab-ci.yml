@@ -1,0 +1,24 @@
+image: node:14-alpine
+
+stages:
+  - yarn
+  - lint
+
+yarn:
+  stage: yarn
+  script:
+    - yarn install
+  cache:
+    paths:
+      - node_modules/
+      - yarn.lock
+  artifacts:
+    expire_in: 1 days
+    when: on_success
+    paths:
+      - node_modules/
+
+eslint:
+  stage: lint
+  script:
+    - yarn lint:ci
