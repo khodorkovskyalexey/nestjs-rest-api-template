@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { ignoreFavicon } from './utils';
 
 const useSwagger = (app: INestApplication) => {
   const options = new DocumentBuilder()
@@ -30,6 +31,8 @@ async function bootstrap() {
       whitelist: true,
     }),
   );
+
+  app.use(ignoreFavicon);
 
   if (env === 'development' || env === 'staging') {
     useSwagger(app);
