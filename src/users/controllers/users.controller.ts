@@ -6,6 +6,7 @@ import { LocaleAuthGuard } from 'src/auth/decorators';
 import { IAM } from 'src/common/decorators';
 import { User } from '../enitities';
 import { UniqEmailGuard, UniqPhoneGuard } from '../guards';
+import { UserIdGuard } from '../guards/user-id.guard';
 import { CreateUserInput, UpdateUserInput, UserSignInInput } from '../inputs';
 import { UserModel } from '../models';
 import { UserService } from '../services';
@@ -24,7 +25,7 @@ import { AuthUserDto } from '../types/types';
   routes: {
     only: ['createOneBase', 'deleteOneBase', 'getOneBase', 'getManyBase', 'updateOneBase'],
     deleteOneBase: {
-      decorators: [LocaleAuthGuard(UserRole.USER), ApiBearerAuth()],
+      decorators: [UseGuards(UserIdGuard), LocaleAuthGuard(UserRole.USER), ApiBearerAuth()],
     },
     getOneBase: {
       decorators: [LocaleAuthGuard(AdminRole.ADMIN), ApiBearerAuth()],
@@ -33,7 +34,11 @@ import { AuthUserDto } from '../types/types';
       decorators: [LocaleAuthGuard(AdminRole.ADMIN), ApiBearerAuth()],
     },
     updateOneBase: {
-      decorators: [UseGuards(UniqEmailGuard, UniqPhoneGuard), LocaleAuthGuard(UserRole.USER), ApiBearerAuth()],
+      decorators: [
+        UseGuards(UniqEmailGuard, UniqPhoneGuard, UserIdGuard),
+        LocaleAuthGuard(UserRole.USER),
+        ApiBearerAuth(),
+      ],
     },
     createOneBase: {
       decorators: [UseGuards(UniqEmailGuard, UniqPhoneGuard)],
