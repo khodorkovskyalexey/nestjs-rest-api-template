@@ -1,73 +1,117 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
+# NestJS REST API sample
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+NestJS REST API sample for typical project
 
-## Installation
+## Table of Contents
+
+- [Features](#features)
+- [Quick run](#quick-run)
+- [Comfortable development](#comfortable-development)
+- [Links](#links)
+- [Database utils](#database-utils)
+
+## Features
+
+- [x] Database ([typeorm](https://www.npmjs.com/package/typeorm)).
+- [x] Seeding ([typeorm-seeding](https://www.npmjs.com/package/typeorm-seeding)).
+- [x] Config Service ([@nestjs/config](https://www.npmjs.com/package/@nestjs/config)).
+- [x] Sign in and sign up via email.
+- [x] Admin and User roles.
+- [x] Swagger.
+- [x] Docker.
+- [x] GitLab CI
+
+## Quick run
 
 ```bash
-$ npm install
+git clone --depth 1 https://github.com/khodorkovskyalexey/nestjs-rest-api-sample.git my-app
+cd my-app/
+cp env-example .env
 ```
 
-## Running the app
+Change `DB_HOST=127.0.0.1` to `DATABASE_HOST=postgres`
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+docker-compose up -d
 ```
 
-## Test
+For check status run
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+docker-compose logs
 ```
 
-## Support
+## Comfortable development
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+git clone --depth 1 https://github.com/khodorkovskyalexey/nestjs-rest-api-sample.git my-app
+cd my-app/
+cp env-example .env
+```
+
+Run additional container:
+
+```bash
+docker-compose up -d postgres adminer redis
+```
+
+```bash
+yarn install
+yarn migration
+yarn seeds
+yarn start:dev
+```
+
+## Links
+
+- Swagger: http://localhost:5000/api
+- Adminer (client for DB): http://localhost:8080
+
+## Database utils
+
+Generate migration
+
+```bash
+yarn migration:generate CreatingMigrationName
+```
+
+Run migration
+
+```bash
+yarn migration
+```
+
+Revert migration
+
+```bash
+yarn migration:revert
+```
+
+Sync all tables in database
+
+```bash
+yarn schema:sync
+```
+
+Drop all tables in database
+
+```bash
+yarn schema:drop
+```
+
+Run seeds
+
+```bash
+yarn seeds
+```
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Author - [Alexey Khodorkovsky](https://github.com/khodorkovskyalexey)
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+[MIT license](LICENSE).
