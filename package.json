@@ -1,5 +1,5 @@
 {
-  "name": "nestjs-rest-api-template",
+  "name": "nestjs-rest-api-sample",
   "version": "0.0.1",
   "description": "",
   "engines": {
@@ -7,7 +7,7 @@
   },
   "repository": {
     "type": "GitHub",
-    "url": "https://github.com/khodorkovskyalexey/nestjs-rest-api-template"
+    "url": "https://github.com/khodorkovskyalexey/nestjs-rest-api-sample"
   },
   "author": {
     "name": "khodorkovskyalexey",
