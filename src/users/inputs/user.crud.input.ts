@@ -39,7 +39,7 @@ export class UserInput {
   @Length(1, 254)
   lastName?: string;
 
-  @ApiProperty({ example: 'example@email.com', description: 'User email', type: String })
+  @ApiProperty({ example: 'user@email.com', description: 'User email', type: String })
   @IsDefined()
   @IsEmail()
   email: string;

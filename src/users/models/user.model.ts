@@ -18,10 +18,10 @@ export class UserModel {
   @ApiProperty({ example: 'Ivanov', description: 'User last name', type: String })
   lastName?: string;
 
-  @ApiProperty({ example: 'example@email.com', description: 'User email', type: String })
+  @ApiProperty({ example: 'user@email.com', description: 'User email', type: String })
   email: string;
 
-  @ApiProperty({ example: '12345678', description: 'User password', type: String, minLength: 8, maxLength: 254 })
+  @ApiProperty({ example: 'Password123', description: 'User password', type: String, minLength: 8, maxLength: 254 })
   @Exclude()
   password: string;
 
