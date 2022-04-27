@@ -1,5 +1,5 @@
 {
-    "pattern": "^(master|main|develop){1}$|^(feature|fix|hotfix|release)\/.+$",
+    "pattern": "^(master|staging|develop){1}$|^(feature|fix|hotfix|release)\/.+$",
     "errorMsg": "Invalid branch name"
 }
   
