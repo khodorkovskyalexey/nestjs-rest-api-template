@@ -1,15 +1,8 @@
 import { BadRequestException, CanActivate, ExecutionContext, mixin, Type } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Request } from 'express';
-import { FindOneOptions, Repository } from 'typeorm';
-
-interface FindOneRecordInterface<T> {
-  findOne: (options?: FindOneOptions<T>) => Promise<T>;
-}
-
-export interface RecordWithIdInterface {
-  id: string;
-}
+import { Repository } from 'typeorm';
+import { FindOneRecordInterface, RecordWithIdInterface } from '../interfaces';
 
 export type Constructor<T> = new (...args: any[]) => T;
 
