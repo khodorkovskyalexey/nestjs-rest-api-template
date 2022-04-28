@@ -6,7 +6,7 @@ interface FindOneRecordInterface<T> {
   findOne: (options?: FindOneOptions<T>) => Promise<T>;
 }
 
-interface RecordWithIdInterface {
+export interface RecordWithIdInterface {
   id: string;
 }
 

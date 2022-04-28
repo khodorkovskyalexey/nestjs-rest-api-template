@@ -3,9 +3,8 @@ import { ApiBearerAuth, ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@n
 import { Crud, CrudController } from '@nestjsx/crud';
 import { AdminRole } from 'src/admins/admins.types';
 import { LocaleAuthGuard } from 'src/auth/decorators';
-import { IAM } from 'src/common/decorators';
+import { IAM, UseUniqGuards } from 'src/common/decorators';
 import { User } from '../enitities';
-import { UniqUserFieldsGuard } from '../guards';
 import { UserIdGuard } from '../guards/user-id.guard';
 import { CreateUserInput, UpdateUserInput, UserSignInInput } from '../inputs';
 import { UserService } from '../services';
@@ -33,10 +32,15 @@ import { AuthUserDto } from '../types/types';
       decorators: [LocaleAuthGuard(AdminRole.ADMIN), ApiBearerAuth()],
     },
     updateOneBase: {
-      decorators: [UseGuards(UniqUserFieldsGuard, UserIdGuard), LocaleAuthGuard(UserRole.USER), ApiBearerAuth()],
+      decorators: [
+        UseGuards(UserIdGuard),
+        UseUniqGuards(User, ['email', 'phone']),
+        LocaleAuthGuard(UserRole.USER),
+        ApiBearerAuth(),
+      ],
     },
     createOneBase: {
-      decorators: [UseGuards(UniqUserFieldsGuard)],
+      decorators: [UseUniqGuards(User, ['email', 'phone'])],
     },
   },
   query: {
