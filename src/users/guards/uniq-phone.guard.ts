@@ -1,23 +1,15 @@
-import { BadRequestException, CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
-import { Request } from 'express';
+import { ExecutionContext, Injectable } from '@nestjs/common';
+import { BaseUniqRecordsFieldGuard } from 'src/common/guards';
+import { User } from '../enitities';
 import { UsersRepository } from '../repositories';
 
 @Injectable()
-export class UniqPhoneGuard implements CanActivate {
-  constructor(private readonly usersRepository: UsersRepository) {}
+export class UniqPhoneGuard extends BaseUniqRecordsFieldGuard<User> {
+  constructor(protected readonly usersRepository: UsersRepository) {
+    super(usersRepository, 'phone');
+  }
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const req: Request = context.switchToHttp().getRequest();
-    try {
-      const phone = req.body['phone'] as string;
-      const id = req.params['id'] as string;
-      const user = await this.usersRepository.findOne({ where: { phone }, select: ['id'] });
-      if (user && user.id !== id) {
-        throw new BadRequestException(`User with phone ${phone} already exist`);
-      }
-      return true;
-    } catch (error) {
-      throw new BadRequestException(error.message);
-    }
+    return super.canActivate(context);
   }
 }
