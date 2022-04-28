@@ -1,12 +1,12 @@
 import { ExecutionContext, Injectable } from '@nestjs/common';
-import { BaseUniqRecordsFieldGuard } from 'src/common/guards';
+import { BaseUniqRecordFieldsGuard } from 'src/common/guards';
 import { User } from '../enitities';
 import { UsersRepository } from '../repositories';
 
 @Injectable()
-export class UniqPhoneGuard extends BaseUniqRecordsFieldGuard<User> {
+export class UniqUserFieldsGuard extends BaseUniqRecordFieldsGuard<User> {
   constructor(protected readonly usersRepository: UsersRepository) {
-    super(usersRepository, 'phone');
+    super(usersRepository, ['phone', 'email']);
   }
 
   async canActivate(context: ExecutionContext): Promise<boolean> {

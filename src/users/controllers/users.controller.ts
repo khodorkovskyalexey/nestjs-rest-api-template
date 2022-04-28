@@ -5,7 +5,7 @@ import { AdminRole } from 'src/admins/admins.types';
 import { LocaleAuthGuard } from 'src/auth/decorators';
 import { IAM } from 'src/common/decorators';
 import { User } from '../enitities';
-import { UniqEmailGuard, UniqPhoneGuard } from '../guards';
+import { UniqUserFieldsGuard } from '../guards';
 import { UserIdGuard } from '../guards/user-id.guard';
 import { CreateUserInput, UpdateUserInput, UserSignInInput } from '../inputs';
 import { UserService } from '../services';
@@ -33,14 +33,10 @@ import { AuthUserDto } from '../types/types';
       decorators: [LocaleAuthGuard(AdminRole.ADMIN), ApiBearerAuth()],
     },
     updateOneBase: {
-      decorators: [
-        UseGuards(UniqEmailGuard, UniqPhoneGuard, UserIdGuard),
-        LocaleAuthGuard(UserRole.USER),
-        ApiBearerAuth(),
-      ],
+      decorators: [UseGuards(UniqUserFieldsGuard, UserIdGuard), LocaleAuthGuard(UserRole.USER), ApiBearerAuth()],
     },
     createOneBase: {
-      decorators: [UseGuards(UniqEmailGuard, UniqPhoneGuard)],
+      decorators: [UseGuards(UniqUserFieldsGuard)],
     },
   },
   query: {
