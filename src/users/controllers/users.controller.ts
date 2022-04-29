@@ -3,7 +3,7 @@ import { ApiBearerAuth, ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@n
 import { Crud, CrudController } from '@nestjsx/crud';
 import { AdminRole } from 'src/admins/admins.types';
 import { LocaleAuthGuard } from 'src/auth/decorators';
-import { IAM, UseUniqGuards } from 'src/common/decorators';
+import { IAM } from 'src/common/decorators';
 import { User } from '../enitities';
 import { UserIdGuard } from '../guards/user-id.guard';
 import { CreateUserInput, UpdateUserInput, UserSignInInput } from '../inputs';
@@ -17,11 +17,10 @@ import { AuthUserDto } from '../types/types';
     type: User,
   },
   dto: {
-    create: CreateUserInput,
     update: UpdateUserInput,
   },
   routes: {
-    only: ['createOneBase', 'deleteOneBase', 'getOneBase', 'getManyBase', 'updateOneBase'],
+    only: ['deleteOneBase', 'getOneBase', 'getManyBase', 'updateOneBase'],
     deleteOneBase: {
       decorators: [UseGuards(UserIdGuard), LocaleAuthGuard(UserRole.USER), ApiBearerAuth()],
     },
@@ -32,15 +31,7 @@ import { AuthUserDto } from '../types/types';
       decorators: [LocaleAuthGuard(AdminRole.ADMIN), ApiBearerAuth()],
     },
     updateOneBase: {
-      decorators: [
-        UseGuards(UserIdGuard),
-        UseUniqGuards(User, ['email', 'phone']),
-        LocaleAuthGuard(UserRole.USER),
-        ApiBearerAuth(),
-      ],
-    },
-    createOneBase: {
-      decorators: [UseUniqGuards(User, ['email', 'phone'])],
+      decorators: [UseGuards(UserIdGuard), LocaleAuthGuard(UserRole.USER), ApiBearerAuth()],
     },
   },
   query: {
@@ -64,6 +55,14 @@ export class UserController implements CrudController<User> {
   @ApiBody({ type: UserSignInInput })
   async signIn(@Body() input: UserSignInInput): Promise<AuthUserDto> {
     return this.service.signIn(input.email, input.password);
+  }
+
+  @Post('sign-up')
+  @ApiOperation({ summary: 'Sign-up user' })
+  @ApiOkResponse({ type: AuthUserDto })
+  @ApiBody({ type: CreateUserInput })
+  async signUp(@Body() input: CreateUserInput): Promise<AuthUserDto> {
+    return this.service.signUp(input);
   }
 
   @Get('me')

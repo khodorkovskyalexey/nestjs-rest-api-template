@@ -1,13 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IAuthResponse } from 'src/auth/auth.types';
-import { UserInput } from '../inputs';
+import { UserModel } from '../models';
 
-export type AuthUserInterface = IAuthResponse<UserInput>;
+export type AuthUserInterface = IAuthResponse<UserModel>;
 
 export class AuthUserDto implements AuthUserInterface {
   @ApiProperty()
   token: string;
 
   @ApiProperty()
-  user: UserInput;
+  user: UserModel;
 }

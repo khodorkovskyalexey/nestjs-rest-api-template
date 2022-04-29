@@ -5,3 +5,4 @@ export { isImage } from './is-image';
 export { generateCode } from './generate-code';
 export { removeDuplicateItems } from './array-helper';
 export { ignoreFavicon } from './ignore-favicon';
+export { pickObject } from './pick-object';

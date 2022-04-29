@@ -1,5 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
+import { pickObject } from 'src/utils';
+import { User } from '../enitities';
 import { AuthProvider, UserRole } from '../types/enums';
 
 export class UserModel {
@@ -30,4 +32,26 @@ export class UserModel {
 
   @ApiProperty({ enum: AuthProvider, description: 'User auth provider' })
   authProvider: AuthProvider;
+
+  constructor(data: Partial<UserModel>) {
+    Object.assign(this, data);
+  }
+
+  static create(props: User) {
+    const userModel = new UserModel({
+      ...pickObject(props, [
+        'id',
+        'email',
+        'firstName',
+        'lastName',
+        'phone',
+        'avatar',
+        'role',
+        'authProvider',
+        'createdAt',
+        'updatedAt',
+      ]),
+    });
+    return userModel;
+  }
 }
