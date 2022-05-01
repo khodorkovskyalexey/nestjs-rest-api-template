@@ -1,14 +1,13 @@
-import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { AdminRoles, IAM } from 'src/common/decorators';
+import { IAM } from 'src/common/decorators';
 import { ValidEmailPipe } from 'src/common/pipes';
 
 import { Admin } from '../entities';
 import { AdminRole } from '../admins.types';
 import { AdminDto, AdminsSignInBodyDto, AuthAdminDto } from '../dtos';
-import { AdminRoleGuard } from '../guards';
 import { AdminService } from '../services';
+import { LocaleAuthGuard } from 'src/auth/decorators';
 
 @ApiTags('Admins')
 @Controller('admins')
@@ -35,8 +34,7 @@ export class AdminsController {
   @ApiOkResponse({
     type: AdminDto,
   })
-  @AdminRoles(AdminRole.ADMIN)
-  @UseGuards(AuthGuard(), AdminRoleGuard)
+  @LocaleAuthGuard(AdminRole.ADMIN)
   async getMe(@IAM() admin: Admin): Promise<Admin> {
     return admin;
   }
@@ -49,8 +47,7 @@ export class AdminsController {
   @ApiOkResponse({
     type: Boolean,
   })
-  @AdminRoles(AdminRole.ADMIN)
-  @UseGuards(AuthGuard(), AdminRoleGuard)
+  @LocaleAuthGuard(AdminRole.ADMIN)
   async emailIsUniq(@Query('email', ValidEmailPipe) email: string): Promise<boolean> {
     return this.adminService.emailIsUniq(email);
   }
