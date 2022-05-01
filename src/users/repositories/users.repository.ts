@@ -1,4 +1,4 @@
-const crypto = require('crypto');
+import * as crypto from 'crypto';
 
 import { BadRequestException } from '@nestjs/common';
 import { EntityRepository, Repository } from 'typeorm';
