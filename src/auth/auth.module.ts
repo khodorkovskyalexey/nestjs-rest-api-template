@@ -5,7 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AdminsRepository } from 'src/admins/repositories';
 import { UsersRepository } from 'src/users/repositories';
 
-import { JWTConfigService } from './jwt-config.service';
+import { JWTConfigService } from '../common/services';
 import { JwtStrategy } from './jwt.strategy';
 import { AuthNService, AuthZService } from './services';
 

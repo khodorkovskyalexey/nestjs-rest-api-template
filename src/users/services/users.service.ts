@@ -7,7 +7,7 @@ import { CreateUserInput } from '../inputs';
 import { UserModel } from '../models';
 
 import { UsersRepository } from '../repositories';
-import { AuthUserDto } from '../types/types';
+import { AuthUserDto } from '../user.types';
 
 @Injectable()
 export class UserService extends TypeOrmCrudService<User> {

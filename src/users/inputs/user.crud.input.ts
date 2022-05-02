@@ -10,7 +10,7 @@ import {
   IsUUID,
   Length,
 } from 'class-validator';
-import { AuthProvider, UserRole } from '../types/enums';
+import { AuthProvider, UserRole } from '../user.enums';
 
 export class UserInput {
   @ApiProperty({ format: 'uuid', description: 'User id', type: String })

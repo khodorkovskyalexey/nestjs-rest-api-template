@@ -1,6 +1,6 @@
 import { applyDecorators, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { AuthUser } from 'src/common/common.types';
+import { AuthUser } from 'src/common/types';
 import { UserRoles } from 'src/common/decorators';
 import { UserRoleGuard } from 'src/common/guards';
 

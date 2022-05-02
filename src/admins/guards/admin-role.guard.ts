@@ -7,7 +7,7 @@ import { Admin } from '../entities';
 export class AdminRoleGuard implements CanActivate {
   constructor(private reflector: Reflector) {}
 
-  async canActivate(context: ExecutionContext): Promise<boolean> {
+  canActivate(context: ExecutionContext): boolean {
     const roles = this.reflector.get<AdminRole[]>('roles', context.getHandler());
 
     if (!roles.length) {
