@@ -5,6 +5,7 @@ import { AdminsModule } from './admins/admins.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
+import { AwsModule } from './aws/aws.module';
 import { TypeOrmConfigService } from './common/services';
 import configuration, { validationOptions, validationSchema } from './config/configuration';
 import { UsersModule } from './users/users.module';
@@ -21,6 +22,7 @@ import { UsersModule } from './users/users.module';
       useClass: TypeOrmConfigService,
     }),
     AuthModule,
+    AwsModule,
     AdminsModule,
     UsersModule,
   ],

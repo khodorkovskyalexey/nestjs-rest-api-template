@@ -8,22 +8,22 @@ export class UserRoleGuard implements CanActivate {
   constructor(private reflector: Reflector) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const roles = this.reflector.get<AuthUser['role'][]>('roles', context.getHandler());
-
-    if (!roles.length) {
-      return false;
-    }
-
     const req = context.switchToHttp().getRequest();
     const user = req.user as AuthUser;
 
-    await this._check(context, user);
-
-    return true;
+    return this._check(context, user);
   }
 
   private async _check(context: ExecutionContext, user: AuthUser): Promise<boolean> {
     const roles = this.reflector.get<AuthUser['role'][]>('roles', context.getHandler());
+
+    if (!roles) {
+      return true;
+    }
+
+    if (!roles.length) {
+      return false;
+    }
 
     if (roles.includes(user.role)) {
       return true;

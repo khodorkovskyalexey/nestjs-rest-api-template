@@ -19,6 +19,7 @@ NestJS REST API template for typical project
 - [x] Config Service ([@nestjs/config](https://www.npmjs.com/package/@nestjs/config)).
 - [x] Sign in and sign up via email.
 - [x] Admin and User roles.
+- [x] File uploads with Amazon S3.
 - [x] Swagger.
 - [x] Docker.
 - [x] GitLab CI

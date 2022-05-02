@@ -18,6 +18,15 @@ export const validationSchema = Joi.object({
   // redis
   REDIS_PORT: Joi.number().required(),
   REDIS_HOST: Joi.string().required(),
+  // aws
+  AWS_ACCESS_KEY_ID: Joi.string().required(),
+  AWS_SECRET_ACCESS_KEY: Joi.string().required(),
+  // s3
+  S3_REGION_NAME: Joi.string().required(),
+  S3_PUBLIC_BUCKET_NAME: Joi.string().required(),
+  S3_PRIVATE_BUCKET_NAME: Joi.string().required(),
+  S3_PUT_ACTION_EXPIRES_SEC: Joi.number().integer().required(),
+  S3_GET_ACTION_EXPIRES_SEC: Joi.number().integer().required(),
 });
 
 export default () => ({
@@ -40,6 +49,17 @@ export default () => ({
   redis: {
     host: process.env.REDIS_HOST,
     port: parseInt(process.env.REDIS_PORT as string, 10),
+  },
+  aws: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  },
+  s3: {
+    region: process.env.S3_REGION_NAME,
+    publicBucket: process.env.S3_PUBLIC_BUCKET_NAME,
+    privateBucket: process.env.S3_PRIVATE_BUCKET_NAME,
+    putActionExpiresSec: parseInt(process.env.S3_PUT_ACTION_EXPIRES_SEC as string, 10),
+    getActionExpiresSec: parseInt(process.env.S3_GET_ACTION_EXPIRES_SEC as string, 10),
   },
 });
 
