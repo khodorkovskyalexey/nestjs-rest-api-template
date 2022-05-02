@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IAuthResponse } from 'src/auth/auth.types';
-import { UserModel } from '../models';
+import { UserModel } from './models';
 
 export type AuthUserInterface = IAuthResponse<UserModel>;
 

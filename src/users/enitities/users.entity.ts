@@ -2,7 +2,7 @@ import * as crypto from 'crypto';
 
 import { Base } from 'src/common/entities/base.entity';
 import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
-import { AuthProvider, UserRole } from '../types/enums';
+import { AuthProvider, UserRole } from '../user.enums';
 
 const tableName = 'users';
 

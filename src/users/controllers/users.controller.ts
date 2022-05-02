@@ -8,8 +8,8 @@ import { User } from '../enitities';
 import { UserIdGuard } from '../guards/user-id.guard';
 import { CreateUserInput, UpdateUserInput, UserSignInInput } from '../inputs';
 import { UserService } from '../services';
-import { UserRole } from '../types/enums';
-import { AuthUserDto } from '../types/types';
+import { UserRole } from '../user.enums';
+import { AuthUserDto } from '../user.types';
 
 @ApiTags('Users')
 @Crud({

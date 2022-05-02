@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
 import { pickObject } from 'src/utils';
 import { User } from '../enitities';
-import { AuthProvider, UserRole } from '../types/enums';
+import { AuthProvider, UserRole } from '../user.enums';
 
 export class UserModel {
   @ApiProperty({ format: 'uuid', description: 'User id', type: String })
